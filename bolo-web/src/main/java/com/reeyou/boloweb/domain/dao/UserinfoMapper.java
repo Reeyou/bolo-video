@@ -1,16 +1,19 @@
 package com.reeyou.boloweb.domain.dao;
 
-import com.reeyou.bolocommon.utils.MyMapper;
 import com.reeyou.boloweb.domain.pojo.Userinfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserinfoMapper {
     int deleteByPrimaryKey(String id);
 
-    @Select("select count(1) from mmall_user where username = #{username}")
+    @Select("select count(1) from userinfo where username = #{username}")
     int checkUsername(String username);
+
+    @Select("select * from userinfo where username = #{username} and password = #{password}")
+    Userinfo matchUser(@Param("username") String username, @Param("password") String password);
 
     int insert(Userinfo record);
 

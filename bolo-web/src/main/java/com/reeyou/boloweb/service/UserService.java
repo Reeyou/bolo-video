@@ -1,6 +1,9 @@
 package com.reeyou.boloweb.service;
 
+import com.reeyou.bolocommon.utils.ServerResponse;
 import com.reeyou.boloweb.domain.pojo.Userinfo;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Reeyou
@@ -10,5 +13,7 @@ public interface UserService {
 
 	public boolean checkUserName(String userName);
 
-	public void savUser(Userinfo user);
+	ServerResponse<String> register(Userinfo user) throws Exception;
+
+	public ServerResponse login(String username, String password) throws Exception;
 }
