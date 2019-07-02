@@ -10,9 +10,11 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 /**
  * @author Reeyou
@@ -20,7 +22,8 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 @Api(value = "用户登陆注册", tags = {"web登陆注册"})
-public class RegisterLoginController {
+@RequestMapping("/weapp")
+public class RegisterLoginController extends BasicController {
 
 	@Autowired
 	private UserService userService;
@@ -31,6 +34,7 @@ public class RegisterLoginController {
 		if(StringUtils.isBlank(user.getUsername()) || StringUtils.isBlank(user.getPassword())) {
 			return ServerResponse.serverErrorMsg("用户名或密码不能为空");
 		}
+
 		return userService.register(user);
 	}
 
