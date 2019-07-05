@@ -16,4 +16,6 @@ public interface UserService {
 	ServerResponse<String> register(Userinfo user) throws Exception;
 
 	public ServerResponse login(String username, String password) throws Exception;
+
+	public ServerResponse getUserInfo(String id) throws Exception;
 }

@@ -94,4 +94,14 @@ public class UserServiceImpl implements UserService {
 		return userVo;
 	}
 
+	@Override
+	public ServerResponse getUserInfo(String id) throws Exception {
+		Userinfo user = userinfoMapper.selectByPrimaryKey(id);
+		if(user == null) {
+			return ServerResponse.serverErrorMsg("找不到当前用户！");
+		}
+		user.setPassword("");
+		return ServerResponse.serverSuccuss(user);
+	}
+
 }
